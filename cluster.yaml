@@ -82,7 +82,7 @@ spec:
                 - metadata:
                     name: rook-cassandra-data
                   spec:
-                    storageClassName: local-disk
+                    storageClassName: default
                     resources:
                       requests:
                         storage: 49Gi
