@@ -87,13 +87,12 @@ spec:
                       requests:
                         storage: 49Gi
         resources:
-          cassandra:
-            requests:
-              cpu: "1000m"
-              memory: "1700Mi"
-            limits:
-              cpu: "1000m"
-              memory: "1700Mi"
+          requests:
+            cpu: "1000m"
+            memory: "1700Mi"
+          limits:
+            cpu: "1000m"
+            memory: "1700Mi"
         placement: 
           nodeAffinity:
             requiredDuringSchedulingIgnoredDuringExecution:
