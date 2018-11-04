@@ -211,7 +211,7 @@ subjects:
        containers:
        - name: rook-cassandra-operator
 #         image: "192.168.1.8:5000/rook/cassandra:master"
-         image: yanniszark/rook-cassandra-operator:v1alpha1
+         image: yanniszark/rook-cassandra-operator:pre-alpha-0.1
          imagePullPolicy: "Always"
          args: ["cassandra", "operator"]
          env:
