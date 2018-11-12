@@ -29,8 +29,6 @@ spec:
           properties:
             version:
               type: string
-              # Only allow 3.x.x versions
-              #pattern: ^3(\.[0-9]{1,2}){0,2}$
               description: "Version of Cassandra"
             datacenter:
               type: object
@@ -102,12 +100,8 @@ rules:
       - ""
     resources:
       - services
-      - serviceaccounts
     verbs:
-      - get
-      - list
-      - watch
-      - create
+      - "*"
   - apiGroups:
       - ""
     resources:
@@ -122,24 +116,6 @@ rules:
       - nodes
     verbs:
       - get
-  - apiGroups:
-      - rbac.authorization.k8s.io
-    resources:
-      - roles
-    verbs:
-      - get
-      - list
-      - watch
-      - create
-  - apiGroups:
-      - rbac.authorization.k8s.io
-    resources:
-      - rolebindings
-    verbs:
-      - get
-      - list
-      - watch
-      - create
   - apiGroups:
       - apps
     resources:
@@ -210,8 +186,7 @@ subjects:
        serviceAccountName: rook-cassandra-operator
        containers:
        - name: rook-cassandra-operator
-#         image: "192.168.1.8:5000/rook/cassandra:master"
-         image: yanniszark/rook-cassandra-operator:pre-alpha-0.1
+         image: yanniszark/rook-cassandra-operator:pre-alpha-0.2
          imagePullPolicy: "Always"
          args: ["cassandra", "operator"]
          env:
@@ -223,6 +198,5 @@ subjects:
            valueFrom:
              fieldRef:
                fieldPath: metadata.namespace
-
 
 

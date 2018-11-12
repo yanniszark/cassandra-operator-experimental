@@ -26,6 +26,8 @@ rules:
     verbs:
       - get
       - list
+      - patch
+      - watch
   - apiGroups:
       - cassandra.rook.io
     resources:
@@ -69,43 +71,26 @@ metadata:
   namespace: rook-cassandra
 spec:
   version: 2.3.0
-#  repository: "192.168.1.8:5000/scylla"
   repository: yanniszark/scylla
   mode: scylla
   datacenter:
-    name: "us-east-1"
+    name: us-east-1
     racks:
-      - name: "us-east-1a"
+      - name: us-east-1a
         members: 3
         storage:
           volumeClaimTemplates:
                 - metadata:
                     name: rook-cassandra-data
                   spec:
-                    storageClassName: default
                     resources:
                       requests:
-                        storage: 49Gi
+                        storage: 5Gi
         resources:
           requests:
-            cpu: "1000m"
-            memory: "1700Mi"
+            cpu: 1
+            memory: 2Gi
           limits:
-            cpu: "1000m"
-            memory: "1700Mi"
-        placement: 
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-                - matchExpressions:
-                  - key: failure-domain.beta.kubernetes.io/region
-                    operator: In
-                    values:
-                      - us-east-1
-                  - key: failure-domain.beta.kubernetes.io/zone
-                    operator: In
-                    values:
-                      - us-east-1a
-            
-
+            cpu: 1
+            memory: 2Gi
 
