@@ -69,9 +69,10 @@ kind: Cluster
 metadata:
   name: rook-cassandra
   namespace: rook-cassandra
+  annotations:
+    cassandra.rook.io/developer-mode: "true"
 spec:
   version: 2.3.0
-  repository: yanniszark/scylla
   mode: scylla
   datacenter:
     name: us-east-1
